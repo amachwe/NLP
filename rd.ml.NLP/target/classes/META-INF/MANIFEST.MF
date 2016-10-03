@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1475483527143
+Build-Jdk: 1.8.0_65
+Built-By: azahar
+Bundle-ManifestVersion: 2
+Bundle-Name: nlp.core
+Bundle-SymbolicName: rd.ml.NLP
+Bundle-Version: 0.0.2
+Created-By: Apache Maven Bundle Plugin
+Export-Package: rd.ml.nlp.service;uses:="javax.ws.rs,javax.ws.rs.core,rd
+ .ml.digester.service";version="0.0.2"
+Import-Package: com.mongodb;version="[3.3,4)",com.mongodb.client;version
+ ="[3.3,4)",javax.ws.rs;version="[2.0,3)",javax.ws.rs.core;version="[2.0
+ ,3)",org.apache.karaf.shell.api.action;version="[4.0,5)",org.apache.kar
+ af.shell.api.action.lifecycle;version="[4.0,5)",org.apache.log4j;versio
+ n="[1.2,2)",org.bson;version="[3.3,4)",org.osgi.service.event;version="
+ [1.2,2)",rd.ml.digester.service;version="[0.0,1)"
+Karaf-Commands: *
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-3.2.0.201605172007

@@ -10,16 +10,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import org.apache.log4j.Logger;
 import org.bson.Document;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.ServiceFactory;
-import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.event.Event;
 import org.osgi.service.event.EventAdmin;
 import org.osgi.service.event.EventConstants;
@@ -48,10 +44,10 @@ public class DigestServiceImpl implements DigestService{
 	private String host="localhost";
 	private int port = 27017;
 
-	private static final AtomicInteger i=new AtomicInteger(0);
+	
 	public DigestServiceImpl(EventAdmin admin) {
 		this.admin = admin;
-		System.out.println("GOT cons "+i.incrementAndGet());
+	
 		
 	}
 
@@ -66,8 +62,9 @@ public class DigestServiceImpl implements DigestService{
 		WordMap CORPUS = new rd.ml.nlp.data.WordMapImpl("CORPUS", "CORPUS", Type.Corpus);
 		ConcurrentLinkedQueue<Document> docsQ = new ConcurrentLinkedQueue<>();
 
+		logger.info("Root Directory: "+rootDirectory);
 		Set<File> files = DirectoryParser.getFiles(new File(rootDirectory), DirectoryParser.TEXT_FILE_FILTER);
-
+		
 		try {
 			return pool.submit(() -> {
 				try {

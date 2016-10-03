@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>NLP</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2</version>
 	<packaging>bundle</packaging>
 
 	<name>NLP</name>
@@ -115,13 +115,10 @@
 				<configuration>
 					<instructions>
 						<Bundle-Name>nlp.core</Bundle-Name>
-						<Bundle-Version>0.0.1</Bundle-Version>
+						<Bundle-Version>0.0.2</Bundle-Version>
 						<Karaf-Commands>*</Karaf-Commands>
 						<Export-Package>rd.ml.nlp.service</Export-Package>
 						<Import-Package>*</Import-Package>
-						<Web-ContextPath>digest_ws</Web-ContextPath>
-						<Webapp-Context>digest_ws</Webapp-Context>
-						<_wab>src/main/webapp</_wab>
 					</instructions>
 				</configuration>
 			</plugin>

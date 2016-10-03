@@ -1,10 +1,12 @@
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
 
-	<bean id="digestandwritemongo" class = "rd.ml.nlp.service.DigestAndWriteServiceImpl">
+	<bean id="digestandwrite" class = "rd.ml.nlp.service.DigestAndWriteServiceImpl">
 		<argument ref="digester"/>
 		<argument ref="mongosink"/>
 	</bean>
+
 	<reference id="digester" interface="rd.ml.digester.service.DigestService" timeout="20000"/>
-	<reference id="mongosink" interface="rd.ml.digester.service.DataSink" timeout="20000"/>
-	<service ref="digestandwritemongo" interface="rd.ml.nlp.service.DigestAndWriteService"/>
+	<reference id="mongosink" interface="rd.ml.digester.service.DataSink" timeout="20000" filter="(target=mongodb)"/>
+	<reference id="filesink" interface="rd.ml.digester.service.DataSink" timeout="20000" filter="(target=file)"/>
+	<service ref="digestandwrite" interface="rd.ml.nlp.service.DigestAndWriteService"/>
 </blueprint>

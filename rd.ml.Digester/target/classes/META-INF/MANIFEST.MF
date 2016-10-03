@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1475483524203
+Build-Jdk: 1.8.0_65
+Built-By: azahar
+Bundle-Activator: rd.ml.digester.activation.Activator
+Bundle-ManifestVersion: 2
+Bundle-Name: nlp.digester
+Bundle-SymbolicName: rd.ml.Digester
+Bundle-Version: 0.0.2
+Created-By: Apache Maven Bundle Plugin
+Export-Package: rd.ml.digester.service;uses:="org.bson,org.osgi.framewor
+ k,org.osgi.service.event";version="0.0.2",rd.ml.digester.activation;use
+ s:="org.osgi.framework,org.osgi.service.cm";version="0.0.2"
+Import-Package: com.aliasi.tokenizer,com.mongodb;version="[3.3,4)",com.m
+ ongodb.client;version="[3.3,4)",com.mongodb.client.model;version="[3.3,
+ 4)",org.apache.karaf.shell.api.action;version="[4.0,5)",org.apache.kara
+ f.shell.api.action.lifecycle;version="[4.0,5)",org.apache.log4j;version
+ ="[1.2,2)",org.bson;version="[3.3,4)",org.osgi.framework;version="[1.5,
+ 2)",org.osgi.service.cm;version="[1.3,2)",org.osgi.service.event;versio
+ n="[1.2,2)",org.osgi.util.tracker;version="[1.4,2)"
+Karaf-Commands: *
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-3.0.0.201509101326

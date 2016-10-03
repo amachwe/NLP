@@ -61,7 +61,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
+			<version>4.8.1</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -117,7 +117,7 @@
 					<instructions>
 						<Karaf-Commands>*</Karaf-Commands>
 						<Bundle-Name>nlp.digester</Bundle-Name>
-						<Bundle-Version>0.0.1</Bundle-Version>
+						<Bundle-Version>0.0.2</Bundle-Version>
 						<Bundle-Activator>rd.ml.digester.activation.Activator</Bundle-Activator>
 						<Export-Package>rd.ml.digester.service;rd.ml.digester.activation;</Export-Package>
 						<Import-Package>*</Import-Package>

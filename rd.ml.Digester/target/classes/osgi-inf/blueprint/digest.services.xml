@@ -1,0 +1,42 @@
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+	<bean id = "digester" class = "rd.ml.digester.service.DigestServiceImpl"  >
+		<argument ref="event_admin"/>
+	</bean> 
+	
+	<reference id="event_admin" interface="org.osgi.service.event.EventAdmin"/>
+	<service id="test"  ref="digester" interface = "rd.ml.digester.service.DigestService" >
+	</service>
+	
+
+	
+	<bean id="mongosink" class="rd.ml.digester.service.MongoDataSink">
+		<argument value="localhost"/>
+		<argument value="27017"/>
+		<argument value="NLP"/>
+		<argument value="topics"/>
+		<argument value="documents"/>
+		
+		
+	</bean>
+	<service ref="mongosink" interface="rd.ml.digester.service.DataSink">
+	<service-properties>
+		<entry key="target" value="mongodb"/>
+		</service-properties>
+	</service>
+	
+	
+	
+	
+	
+	<bean id="filesink" class="rd.ml.digester.service.FileWriterDataSink">
+	<argument value="output.txt"/>
+		
+		
+		
+	</bean>
+	<service ref="filesink" interface="rd.ml.digester.service.DataSink">
+		<service-properties>
+		<entry key="target" value="file"/>
+		</service-properties>
+	</service>
+</blueprint>
