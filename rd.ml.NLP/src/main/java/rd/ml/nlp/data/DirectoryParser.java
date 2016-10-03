@@ -5,16 +5,22 @@ import java.io.FileFilter;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Parses directory structure recursively starting from root node. Requires a file filter.
+ * Contains implementation of a text file filter or user can provide their own.
+ * @author azahar
+ *
+ */
 public class DirectoryParser {
 
-	public static Set<File> getFiles(File rootDir, final FileFilter textFileFilter) {
+	public static Set<File> getFiles(File rootDir, final FileFilter fileFilter) {
 		Set<File> files = new HashSet<>();
 
-		File[] fileList = rootDir.listFiles(textFileFilter);
+		File[] fileList = rootDir.listFiles(fileFilter);
 		if (fileList != null && fileList.length > 0) {
 			for (File file : fileList) {
 				if (file.isDirectory()) {
-					files.addAll(getFiles(file, textFileFilter));
+					files.addAll(getFiles(file, fileFilter));
 				} else {
 					files.add(file);
 				}
@@ -23,6 +29,9 @@ public class DirectoryParser {
 		return files;
 	}
 
+	/**
+	 * Default .txt file filter.
+	 */
 	public static final FileFilter TEXT_FILE_FILTER = new FileFilter() {
 
 		@Override

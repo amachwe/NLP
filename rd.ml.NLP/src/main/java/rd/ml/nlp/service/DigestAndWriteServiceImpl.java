@@ -16,6 +16,11 @@ import org.bson.Document;
 import rd.ml.digester.service.DataSink;
 import rd.ml.digester.service.DigestService;
 
+/**
+ * Service implementation also exposed as a rest end point.
+ * @author azahar
+ *
+ */
 @Path("/digest")
 public class DigestAndWriteServiceImpl implements DigestAndWriteService {
 
@@ -28,6 +33,9 @@ public class DigestAndWriteServiceImpl implements DigestAndWriteService {
 		this.digestService = digestService;
 	}
 
+	/**
+	 * 
+	 */
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	@Override

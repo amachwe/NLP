@@ -8,6 +8,11 @@ import org.osgi.service.event.EventHandler;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 
+/**
+ * Mongo Logger, listens for events and logs into Mongo db
+ * @author azahar
+ *
+ */
 public class MongoLogger implements EventHandler {
 
 	private static final Logger logger = Logger.getLogger(MongoLogger.class);
@@ -16,22 +21,45 @@ public class MongoLogger implements EventHandler {
 	private String host = "localhost", db = "Events", coll = "EventLog";
 	private int port = 27017;
 
+	/**
+	 * Log data events to Mongo db
+	 * 
+	 * @param host
+	 * @param port
+	 * @param db
+	 *            - Mongo database name
+	 * @param coll
+	 *            - Mongo collection name
+	 */
 	public MongoLogger(String host, int port, String db, String coll) {
 		this.db = db;
 		this.coll = coll;
+
+		init(host, port);
 		this.host = host;
 		this.port = port;
-		init(host,port);
 
 	}
 
-	public void init(String host,int port) {
+	/**
+	 * Re initialise connection when configuration changes.
+	 * 
+	 * @param host
+	 * @param port
+	 */
+	public void init(String host, int port) {
+		if (logger.isInfoEnabled()) {
+			logger.info("Attempting to reinit Mongo connection, old host+port: " + this.host + ":" + this.port);
+		}
 		if (mc != null) {
 
 			mc.close();
 		}
 		mc = new MongoClient(host, port);
 		mColl = mc.getDatabase(db).getCollection(coll);
+		if (logger.isInfoEnabled()) {
+			logger.info("Done, new host+port: " + host + ":" + port);
+		}
 	}
 
 	@Override
@@ -43,7 +71,5 @@ public class MongoLogger implements EventHandler {
 
 		mColl.insertOne(doc);
 	}
-
-
 
 }

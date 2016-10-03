@@ -30,7 +30,11 @@ import rd.ml.nlp.data.WordMap;
 import rd.ml.nlp.data.WordMap.Type;
 import rd.ml.nlp.data.WordMapImpl;
 import rd.ml.nlp.data.WordMapToDocument;
-
+/**
+ * Implementation of the Digest Service - it takes documents and using a multi-threaded processor - processes them into a word matrix
+ * @author azahar
+ *
+ */
 public class DigestServiceImpl implements DigestService{
 	private static final String TOPIC_NAME = "nlp/digest/uselog";
 	private static final TokenizerFactory stopWordTokenizer = new EnglishStopTokenizerFactory(
@@ -41,8 +45,7 @@ public class DigestServiceImpl implements DigestService{
 
 	private final EventAdmin admin;
 
-	private String host="localhost";
-	private int port = 27017;
+
 
 	
 	public DigestServiceImpl(EventAdmin admin) {
@@ -72,7 +75,7 @@ public class DigestServiceImpl implements DigestService{
 					logger.info("--- Streaming ---");
 					Stream<File> fileStream = StreamSupport.stream(files.spliterator(), true);
 					fileStream.parallel().map(file -> {
-
+						//Start file processing.
 						String topicName = file.getParentFile().getName();
 						logger.debug(topicName);
 						String name = file.getName();
@@ -109,6 +112,7 @@ public class DigestServiceImpl implements DigestService{
 
 						return topic;
 
+						//Collect and Group by Topic Name
 					}).collect(Collectors.groupingBy(WordMap::getTopic)).forEach((name, topics) -> {
 						WordMap topicName = new WordMapImpl(name, name, WordMap.Type.Topic);
 						topics.stream().forEach(topic -> {

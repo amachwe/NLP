@@ -37,7 +37,7 @@ public class Activator implements BundleActivator, ManagedService {
 	private BundleTracker bunTracker;
 
 	private MongoClient mc;
-	private MongoCollection<Document> mColl;
+	
 	private String host = "localhost";
 	private int port = 27017;
 

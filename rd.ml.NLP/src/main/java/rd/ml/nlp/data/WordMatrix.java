@@ -27,9 +27,9 @@ public final class WordMatrix {
 
 	/**
 	 * 
-	 * @param maxDocs
-	 * @param maxTerms
-	 * @param incrementDocs
+	 * @param maxDocs - maximum number of documents to be stored
+	 * @param maxTerms - maximum number of terms to be stored
+	 * @param incrementDocs - 
 	 * @param incrementTerms
 	 */
 	public WordMatrix(int maxDocs, int maxTerms, int incrementDocs, int incrementTerms) {
