@@ -34,7 +34,7 @@ public class DigestAndWriteServiceImpl implements DigestAndWriteService {
 	}
 
 	/**
-	 * 
+	 * digest and write endpoint for REST Service - takes in one query parameter: path=path to root directory
 	 */
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
@@ -53,6 +53,9 @@ public class DigestAndWriteServiceImpl implements DigestAndWriteService {
 		}
 	}
 
+	/**
+	 * Default - should be used by commands
+	 */
 	@Override
 	public void digestAndWrite(String rootDir) throws Exception {
 		try {

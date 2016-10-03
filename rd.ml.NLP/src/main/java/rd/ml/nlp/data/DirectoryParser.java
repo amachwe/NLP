@@ -6,8 +6,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Parses directory structure recursively starting from root node. Requires a file filter.
- * Contains implementation of a text file filter or user can provide their own.
+ * Parses directory structure recursively starting from root node. Requires a
+ * file filter. Contains implementation of a text file filter or user can
+ * provide their own.
+ * 
  * @author azahar
  *
  */
@@ -36,8 +38,7 @@ public class DirectoryParser {
 
 		@Override
 		public boolean accept(File arg0) {
-			if(arg0==null)
-			{
+			if (arg0 == null) {
 				return false;
 			}
 			if (arg0.isDirectory() || (arg0.isFile() && arg0.getName().endsWith(".txt"))) {

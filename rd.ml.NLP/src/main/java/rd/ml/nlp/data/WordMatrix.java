@@ -21,15 +21,18 @@ public final class WordMatrix {
 	private final ConcurrentHashMap<String, Integer> termDocCounts = new ConcurrentHashMap<>();
 	private final ConcurrentHashMap<String, Set<String>> topicTerms = new ConcurrentHashMap<>();
 
-	private AtomicInteger termC = new AtomicInteger(0),docC = new AtomicInteger(0);
+	private AtomicInteger termC = new AtomicInteger(0), docC = new AtomicInteger(0);
 	private double[][] termCounts = null;
 	private final int incrementTerms, incrementDocs;
 
 	/**
 	 * 
-	 * @param maxDocs - maximum number of documents to be stored
-	 * @param maxTerms - maximum number of terms to be stored
-	 * @param incrementDocs - 
+	 * @param maxDocs
+	 *            - maximum number of documents to be stored
+	 * @param maxTerms
+	 *            - maximum number of terms to be stored
+	 * @param incrementDocs
+	 *            -
 	 * @param incrementTerms
 	 */
 	public WordMatrix(int maxDocs, int maxTerms, int incrementDocs, int incrementTerms) {
@@ -65,16 +68,15 @@ public final class WordMatrix {
 	public void addWord(String docId, String term) throws InterruptedException {
 		Integer docIdx = null;
 		Integer termIdx = null;
-		if(term.trim().isEmpty())
-		{
+		if (term.trim().isEmpty()) {
 			return;
 		}
-		//System.out.println(docId+"  + "+term);
+		// System.out.println(docId+" + "+term);
 		if ((termIdx = termI.get(term)) == null) {
 			synchronized (this) {
 
 				termIdx = termC.getAndIncrement();
-			
+
 				termI.put(term, termIdx);
 				revTermI.put(termIdx, term);
 			}
@@ -82,7 +84,7 @@ public final class WordMatrix {
 		}
 		if ((docIdx = docI.get(docId)) == null) {
 			synchronized (this) {
-				
+
 				docIdx = docC.getAndIncrement();
 				docI.put(docId, docIdx);
 				revDocI.put(docIdx, docId);
@@ -92,11 +94,12 @@ public final class WordMatrix {
 		}
 
 		synchronized (this) {
-		
-//			if (termIdx >= termCounts.length || docIdx >= termCounts[0].length) {
-//				logger.info(termIdx + " " + docIdx);
-//				expand(termIdx, docIdx);
-//			}
+
+			// if (termIdx >= termCounts.length || docIdx >=
+			// termCounts[0].length) {
+			// logger.info(termIdx + " " + docIdx);
+			// expand(termIdx, docIdx);
+			// }
 			double tempCount = termCounts[termIdx][docIdx];
 
 			if (tempCount == 0) {
